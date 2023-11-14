@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .models import Album
 from django.views import generic
+from .forms import AlbumForm
 
 
 def list_albums(request):
@@ -15,3 +17,13 @@ def list_albums(request):
 class AlbumDetailView(generic.DetailView):
     model = Album
     template_name = 'albums/album_detail.html'
+
+
+def create_album(request):
+    if request.method == 'POST':
+        form = AlbumForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/home/')
+    else:
+        form = AlbumForm
+    return render(request, 'albums/new_album.html', {'form': form})

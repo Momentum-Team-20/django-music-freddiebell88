@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'albums_base.html' %}
 
 {% block content %}
 <h1>Album Collection</h1>
 <ul>
     {% for album in albums %}
-    <li> {{ album }} </li>
+    <li><a href="{% url 'album_detail' album.pk %}"> {{ album }} </a></li>
     {% endfor %}
 </ul>
 {% endblock %}

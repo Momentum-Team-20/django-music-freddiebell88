@@ -9,9 +9,3 @@ class Album(models.Model):
     def __str__(self):
         return self.title
 
-
-# class Collection(models.Model):
-#     name = models.CharField(max_length=250)
-
-#     def __str__(self):
-#         return self.name

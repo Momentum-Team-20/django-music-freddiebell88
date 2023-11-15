@@ -1,8 +1,9 @@
 {% extends 'albums_base.html' %}
 
+{% block content %}
 <h1>add an album to your collection</h1>
-<form action="/new/" method="post">
-    {% csrf_token %}
-    {{ form }}
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
     <input type="submit" value="Submit">
 </form>
+{% endblock %}

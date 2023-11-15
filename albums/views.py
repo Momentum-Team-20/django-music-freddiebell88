@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Album
 from django.views import generic
@@ -28,14 +28,21 @@ def create_album(request):
 
 # delete an album from list/database
 def delete_album(request, pk):
-    album = Album.objects.get(pk=pk)
+    album = get_object_or_404(Album, pk=pk)
     album.delete()
     return redirect('home')
 
 
 # update an existing album
 def edit_album(request, pk):
-    album = Album.objects.get(pk=pk)
+    album = get_object_or_404(Album, pk=pk)
 
-    if request.method == 'GET':
-        
+    if request.method == 'POST':
+        form = AlbumForm(request.POST, instance=album)
+        if form.is_valid():
+            form.save()
+            return redirect('album_detail', pk=pk)
+    else:
+        form = AlbumForm(instance=album)
+    return render(request, 'albums/edit.html', {'form': form})
+

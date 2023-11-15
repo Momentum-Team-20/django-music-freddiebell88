@@ -1,5 +1,9 @@
-{% extends 'albums_base.html %}
+{% extends 'albums_base.html' %}
 
 {%block content%}
 <h1>Update Album</h1>
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Edit">
+</form>
 {% endblock %}

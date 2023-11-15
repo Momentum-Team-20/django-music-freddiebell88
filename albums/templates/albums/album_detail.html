@@ -4,4 +4,5 @@
 <p>Album Title: {{ album.title }} </p>
 <p>Artist: {{ album.artist_name }} </p>
 <a href="{% url 'delete' album.pk %}"><button>Delete Album</button></a>
+<a href="{% url 'edit' album.pk %}"><button>Edit Album</button></a>
 {% endblock %}

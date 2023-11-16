@@ -17,9 +17,10 @@ class AlbumDetailView(generic.DetailView):
 # add an album to the list/database
 def create_album(request):
     if request.method == 'POST':
-        form = AlbumForm(request.POST)
+        form = AlbumForm(request.POST, request.FILES)
         if form.is_valid():
-            album = form.save()
+            form.save()
+            img_obj = form.instance
             return redirect('home')
     else:
         form = AlbumForm()

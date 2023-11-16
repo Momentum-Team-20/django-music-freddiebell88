@@ -1,9 +1,11 @@
 {% extends 'albums_base.html' %}
 
 {% block content %}
-<h1>add an album to your collection</h1>
-<form method="POST">{% csrf_token %}
+<h1>Add an album to your collection</h1>
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit">
 </form>
+{% if img_obj %} <h3>Successfully uploaded : {{img_obj.img_title}}</h3>
+{% endif %}
 {% endblock %}

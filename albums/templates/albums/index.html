@@ -2,9 +2,10 @@
 
 {% block content %}
 <h1>Album Collection</h1>
+<a href="{% url 'new' %}"><button>Add Album</button></a>
 <ul>
     {% for album in albums %}
-    <li><a href="{% url 'album_detail' album.pk %}"> {{ album }} </a></li>
+    <li><a href="{% url 'album_detail' album.pk %}"> {{ album }}, {{ album.artist_name }} </a></li>
     {% endfor %}
 </ul>
 {% endblock %}
